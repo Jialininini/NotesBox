@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div input{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<form action="doUpdate">
+    <div>
+        <input type="text" name="id" value="<%=data._id%>">
+    </div>
+    <div><%=data.username%></div>
+    <textarea name="notes" cols="30" rows="10"></textarea>
+    <input type="submit" value="修改">
+</form>
+</body>
+</html>

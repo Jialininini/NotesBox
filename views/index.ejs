@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            margin: 0 auto;
+            background: lavenderblush;
+        }
+        img,h4{
+            float: left;
+        }
+        div{
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>留言板</h1>
+    <form action="/submit">
+        <%for(var i=0;i<users.length;i++){%>
+            <!--当遍历-->
+        <div>
+            <%if(users[i].username == username){%>
+            <a href="/upload"><img src="<%=users[i].pic%>" alt="" width="40px"></a>
+            <%}%>
+            <%}%>
+            <h4><%=username%></h4>
+        </div>
+        留言: <textarea name="notes" cols="30" rows="10"></textarea>
+        <input type="submit" value="提交">
+        <a href="/logOut">退出</a>
+    </form>
+    <hr>
+    <%for(var i=0;i<msg.length;i++){%>
+   <div>
+       <%for(var j=0;j<users.length;j++){%>
+           <%if(users[j].username == msg[i].username){%>
+           <img src="<%=users[j].pic%> " alt="" width="40px">
+           <%}%>
+       <%}%>
+       <b><%=msg[i].username%></b> Said:
+   </div>
+
+   <div><%=msg[i].notes%></div>
+   <div><%=msg[i].time%></div>
+    <%if(msg[i].username == username){%>
+        <div>
+            <a href="/update?id=<%=msg[i]._id%>">修改</a>
+            <a href="/del?id=<%=msg[i]._id%>">删除</a>
+        </div>
+    <%}%>
+    <hr>
+<%}%>
+
+    <!--<a href="/logOut">Log out</a>-->
+</body>
+</html>
